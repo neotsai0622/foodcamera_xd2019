@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         //Intent what = new Intent(this, CallCameraActivity.class);
         //startActivity(what);
 
-        
+
     }
 
 
