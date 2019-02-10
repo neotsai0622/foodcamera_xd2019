@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
 
 // Create the basic adapter extending from RecyclerView.Adapter
 // Note that we specify the custom ViewHolder which gives us access to our views
@@ -21,7 +22,7 @@ public class NutritionAdapter extends
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView nameTextView;
-        public Button messageButton;
+        public TextView data;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -31,7 +32,7 @@ public class NutritionAdapter extends
             super(itemView);
 
             nameTextView = (TextView) itemView.findViewById(R.id.nutrition_name);
-            messageButton = (Button) itemView.findViewById(R.id.nutrition_button);
+            data = (TextView) itemView.findViewById(R.id.nutrition_data);
         }
 
 
@@ -65,9 +66,10 @@ public class NutritionAdapter extends
         // Set item views based on your views and data model
         TextView textView = viewHolder.nameTextView;
         textView.setText(food.getName());
-        Button button = viewHolder.messageButton;
-        button.setText("More info");
-        button.setEnabled(true);
+        TextView dataView = viewHolder.data;
+        dataView.setText(String.format(Locale.US, " Cal: %.1f, Fat: %.1f, Sodium: %.1f, " +
+                        "Carbs: %.2f, Sugar: %.2f, Protein: %.2f. \n",food.getCalories(), food.getFat(),
+                food.getSodium(), food.getCarbohydrate(), food.getSugars(), food.getProtein()));
     }
 
     // Returns the total count of items in the list

@@ -52,7 +52,6 @@ public class SummaryActivity extends AppCompatActivity {
         // Initialize contacts
         foods = AppDatabase.getInMemoryDatabase(getApplicationContext()).FoodModel().loadAllFood();
         foods.add(0, new Food("Juice", 100, 0, 23, 0, 50, 0));
-        foods.add(0, new Food("Juice", 100, 0, 23, 0, 50, 0));
 
         // Create adapter passing in the sample user data
         adapter = new NutritionAdapter(foods);
