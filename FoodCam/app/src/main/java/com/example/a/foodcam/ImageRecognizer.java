@@ -38,6 +38,11 @@ public class ImageRecognizer {
                                 e.printStackTrace();
                             }
                         });
+        StringBuilder sb = new StringBuilder();
+        for (String key : labelTracker.keySet()) {
+            sb.append(key + " " +  labelTracker.get(key).toString() + "\n");
+        }
+        Log.v("sumgood", sb.toString());
         return labelTracker;
     }
 

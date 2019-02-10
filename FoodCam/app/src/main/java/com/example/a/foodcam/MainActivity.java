@@ -213,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
                     buffer.get(bytes);
                     String result = TextRecognizer.runCloudTextRecognition(BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null));
                     Intent data = new Intent(MainActivity.this, EditorActivity.class);
+                    image.close();
                     data.putExtra("description", result);
                     startActivityForResult(data, EDITOR_REQUEST);
                 }
