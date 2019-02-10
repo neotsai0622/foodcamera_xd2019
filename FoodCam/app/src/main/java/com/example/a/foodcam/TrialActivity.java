@@ -1,19 +1,16 @@
 package com.example.a.foodcam;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
-import com.example.a.foodcam.R;
 import com.example.a.foodcam.db.AppDatabase;
-import com.example.a.foodcam.db.Nutrition;
-import com.example.a.foodcam.db.utils.DatabaseInitializer;
 
 import java.util.List;
 import java.util.Locale;
 
-public class trialactivity extends AppCompatActivity {
+public class TrialActivity extends AppCompatActivity {
 
     private AppDatabase mDb;
 
@@ -23,14 +20,17 @@ public class trialactivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_trial);
 
         mYoungUsersTextView = findViewById(R.id.message);
 
         mDb = AppDatabase.getInMemoryDatabase(getApplicationContext());
+        Log.d("lookforthistag", getIntent().toString());
+        Log.d("lookforthistag", getIntent().getParcelableExtra("Food").toString());
 
-        populateDb();
 
+        Food food = getIntent().getParcelableExtra("Food");
+        populateDb(food);
         fetchData();
     }
 
@@ -40,16 +40,18 @@ public class trialactivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    private void populateDb() {
-        DatabaseInitializer.populateSync(mDb);
+    private void populateDb(Food food) {
+        Log.d("lookforthistag", food.toString());
+        mDb.FoodModel().insertFood(food);
     }
 
     private void fetchData() {
         StringBuilder sb = new StringBuilder();
-        List<Nutrition> foods = mDb.nutritionModel().loadAllNutrition();
-        for (Nutrition n: foods ) {
+        List<Food> foods = mDb.FoodModel().loadAllFood();
+        for (Food n: foods) {
             sb.append(String.format(Locale.US, "Cal:%f, Fat:%f, Sodium:%f, " +
-                    "Carbohydrate:%f, Sugar:%f, Protein:%f. \n",n.calories, n.fat, n.sodium, n.carbohydrate, n.sugar, n.protein));
+                    "Carbohydrate:%f, Sugar:%f, Protein:%f. \n",n.getCalories(), n.getFat(),
+                    n.getSodium(), n.getCarbohydrate(), n.getSugars(), n.getProtein()));
         }
         mYoungUsersTextView.setText(sb);
     }
