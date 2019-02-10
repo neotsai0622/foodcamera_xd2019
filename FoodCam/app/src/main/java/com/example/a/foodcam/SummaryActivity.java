@@ -97,13 +97,6 @@ public class SummaryActivity extends AppCompatActivity {
         prot.setText(Prot);
 
         clearButton = findViewById(R.id.clearbutton);
-        clearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AppDatabase.getInMemoryDatabase(getApplicationContext()).FoodModel().deleteAll();
-                adapter.notifyDataSetChanged();
-            }
-        });
     }
 
     private void addItem(Food food) {
