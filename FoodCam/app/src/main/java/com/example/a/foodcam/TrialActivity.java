@@ -25,23 +25,19 @@ public class TrialActivity extends AppCompatActivity {
         mYoungUsersTextView = findViewById(R.id.message);
 
         mDb = AppDatabase.getInMemoryDatabase(getApplicationContext());
-        Log.d("lookforthistag", getIntent().toString());
-        Log.d("lookforthistag", getIntent().getParcelableExtra("Food").toString());
-
 
         Food food = getIntent().getParcelableExtra("Food");
         populateDb(food);
         fetchData();
     }
 
-    @Override
-    protected void onDestroy() {
-        AppDatabase.destroyInstance();
-        super.onDestroy();
-    }
+    //    @Override
+    //    protected void onDestroy() {
+    //        AppDatabase.destroyInstance();
+    //        super.onDestroy();
+    //    }
 
     private void populateDb(Food food) {
-        Log.d("lookforthistag", food.toString());
         mDb.FoodModel().insertFood(food);
     }
 
@@ -49,9 +45,11 @@ public class TrialActivity extends AppCompatActivity {
         StringBuilder sb = new StringBuilder();
         List<Food> foods = mDb.FoodModel().loadAllFood();
         for (Food n: foods) {
+            sb.append(n.getName());
             sb.append(String.format(Locale.US, "Cal:%f, Fat:%f, Sodium:%f, " +
                     "Carbohydrate:%f, Sugar:%f, Protein:%f. \n",n.getCalories(), n.getFat(),
                     n.getSodium(), n.getCarbohydrate(), n.getSugars(), n.getProtein()));
+            sb.append("\n");
         }
         mYoungUsersTextView.setText(sb);
     }

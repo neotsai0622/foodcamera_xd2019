@@ -20,9 +20,10 @@ import java.io.InputStream;
 import java.util.List;
 
 public class TextRecognizer {
-    private static String text = "";
+    private static String textee = "Failed";
 
     public static String runCloudTextRecognition(Bitmap mSelectedImage) {
+        textee = "Failed";
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(mSelectedImage);
         FirebaseVisionTextRecognizer recognizer = FirebaseVision.getInstance()
                 .getCloudTextRecognizer();
@@ -31,7 +32,7 @@ public class TextRecognizer {
                         new OnSuccessListener<FirebaseVisionText>() {
                             @Override
                             public void onSuccess(FirebaseVisionText texts) {
-                                text = processCloudTextRecognitionResult(texts);
+                                textee = processCloudTextRecognitionResult(texts);
                             }
                         })
                 .addOnFailureListener(
@@ -40,17 +41,19 @@ public class TextRecognizer {
                             public void onFailure(@NonNull Exception e) {
                                 // Task failed with an exception
                                 e.printStackTrace();
-                                text = "Failed";
+                                textee = "Failed";
                             }
                         });
-        return text;
+        String txt = textee;
+        Log.d("sumgood", txt);
+        return textee;
 
     }
 
     public static String processCloudTextRecognitionResult(FirebaseVisionText text) {
         // Task completed successfully
         if (text == null) {
-            return "Failed"; }
+            return "FailedNoText"; }
 
         StringBuilder sb = new StringBuilder();
         List<FirebaseVisionText.TextBlock> blocks = text.getTextBlocks();
