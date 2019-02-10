@@ -46,8 +46,9 @@ public class TrialActivity extends AppCompatActivity {
         List<Food> foods = mDb.FoodModel().loadAllFood();
         for (Food n: foods) {
             sb.append(n.getName());
-            sb.append(String.format(Locale.US, "Cal:%f, Fat:%f, Sodium:%f, " +
-                    "Carbohydrate:%f, Sugar:%f, Protein:%f. \n",n.getCalories(), n.getFat(),
+            sb.append(":\t");
+            sb.append(String.format(Locale.US, "Cal: %.2f, Fat: %.2f, Sodium: %.2f, " +
+                    "Carbohydrate: %.2f, Sugar: %.2f, Protein: %.2f. \n",n.getCalories(), n.getFat(),
                     n.getSodium(), n.getCarbohydrate(), n.getSugars(), n.getProtein()));
             sb.append("\n");
         }

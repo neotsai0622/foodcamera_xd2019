@@ -23,7 +23,6 @@ public class TextRecognizer {
     private static String textee = "Failed";
 
     public static String runCloudTextRecognition(Bitmap mSelectedImage) {
-        textee = "Failed";
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(mSelectedImage);
         FirebaseVisionTextRecognizer recognizer = FirebaseVision.getInstance()
                 .getCloudTextRecognizer();
@@ -41,12 +40,17 @@ public class TextRecognizer {
                             public void onFailure(@NonNull Exception e) {
                                 // Task failed with an exception
                                 e.printStackTrace();
-                                textee = "Failed";
+                                textee = "FailedResponse";
                             }
                         });
+        try {
+            Thread.sleep(5000);
+        } catch (Exception e) {
+
+        }
         String txt = textee;
         Log.d("sumgood", txt);
-        return textee;
+        return txt;
 
     }
 

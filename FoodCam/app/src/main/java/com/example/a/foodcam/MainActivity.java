@@ -211,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
                     ByteBuffer buffer = image.getPlanes()[0].getBuffer();
                     byte[] bytes = new byte[buffer.capacity()];
                     buffer.get(bytes);
+                    Log.d("sumgood", "image available");
                     String result = TextRecognizer.runCloudTextRecognition(BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null));
                     Intent data = new Intent(MainActivity.this, EditorActivity.class);
                     image.close();
@@ -227,6 +228,7 @@ public class MainActivity extends AppCompatActivity {
                     super.onCaptureCompleted(session, request, result);
                     Toast.makeText(MainActivity.this, "Saved "+file, Toast.LENGTH_SHORT).show();
                     createCameraPreview();
+                    Log.d("sumgood", "capture complete");
                 }
             };
             cameraDevice.createCaptureSession(outputSurface, new CameraCaptureSession.StateCallback() {

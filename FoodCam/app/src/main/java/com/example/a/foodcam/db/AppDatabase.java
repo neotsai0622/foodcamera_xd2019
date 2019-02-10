@@ -17,10 +17,12 @@ public abstract class AppDatabase extends RoomDatabase{
 
     public static AppDatabase getInMemoryDatabase(Context context) {
         if (INSTANCE == null ) {
-            INSTANCE =
-                    Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppDatabase.class)
-                    .allowMainThreadQueries()
-                    .build();
+//            INSTANCE =
+//                    Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppDatabase.class)
+//                    .allowMainThreadQueries()
+//                    .build();
+            INSTANCE = Room.databaseBuilder(context.getApplicationContext(),AppDatabase.class, "food_database").allowMainThreadQueries().build();
+
         }
         return INSTANCE;
     }
