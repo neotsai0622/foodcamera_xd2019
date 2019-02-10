@@ -7,16 +7,23 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/protein_label"
+        android:id="@+id/serving_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="14dp"
+        android:layout_marginTop="28dp"
+        android:text="Servings:"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/protein_label"
+        app:layout_constraintTop_toBottomOf="@+id/protein_label" />
+
+    <TextView
+        android:id="@+id/protein_label"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="28dp"
         android:text="Protein (g)"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/protein_entry"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/sugars_label"
         app:layout_constraintTop_toBottomOf="@+id/sugars_label" />
 
     <EditText
@@ -24,9 +31,11 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="7dp"
         android:ems="10"
         android:inputType="numberDecimal"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/sugars_entry"
         app:layout_constraintStart_toEndOf="@+id/protein_label"
         app:layout_constraintTop_toBottomOf="@+id/sugars_entry" />
 
@@ -35,9 +44,11 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="7dp"
         android:ems="10"
         android:inputType="numberDecimal"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/carbohydrate_entry"
         app:layout_constraintStart_toEndOf="@+id/sugars_label"
         app:layout_constraintTop_toBottomOf="@+id/carbohydrate_entry" />
 
@@ -45,26 +56,20 @@
         android:id="@+id/sugars_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="28dp"
         android:text="Sugars (g)"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/sugars_entry"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/carbohydrate_label"
         app:layout_constraintTop_toBottomOf="@+id/carbohydrate_label" />
 
     <TextView
         android:id="@+id/carbohydrate_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="13dp"
+        android:layout_marginTop="28dp"
         android:text="Carbohydrate (g)"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/carbohydrate_entry"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/sodium_label"
         app:layout_constraintTop_toBottomOf="@+id/sodium_label" />
 
     <EditText
@@ -72,9 +77,11 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="6dp"
         android:ems="10"
         android:inputType="numberDecimal"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/sodium_entry"
         app:layout_constraintStart_toEndOf="@+id/carbohydrate_label"
         app:layout_constraintTop_toBottomOf="@+id/sodium_entry" />
 
@@ -82,13 +89,10 @@
         android:id="@+id/sodium_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="13dp"
+        android:layout_marginTop="28dp"
         android:text="Sodium (mg):"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/sodium_entry"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/fat_label"
         app:layout_constraintTop_toBottomOf="@+id/fat_label" />
 
     <EditText
@@ -96,9 +100,11 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="7dp"
         android:ems="10"
         android:inputType="numberDecimal"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/fat_entry"
         app:layout_constraintStart_toEndOf="@+id/sodium_label"
         app:layout_constraintTop_toBottomOf="@+id/fat_entry" />
 
@@ -106,13 +112,10 @@
         android:id="@+id/fat_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="13dp"
+        android:layout_marginTop="28dp"
         android:text="Fat (g):"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/fat_entry"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/calories_label"
         app:layout_constraintTop_toBottomOf="@+id/calories_label" />
 
     <EditText
@@ -120,9 +123,11 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="7dp"
         android:ems="10"
         android:inputType="numberDecimal"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/calories_entry"
         app:layout_constraintStart_toEndOf="@+id/fat_label"
         app:layout_constraintTop_toBottomOf="@+id/calories_entry" />
 
@@ -132,23 +137,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="162dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="43dp"
         android:layout_marginEnd="162dp"
         android:onClick="onClick"
         android:text="Submit"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/protein_entry" />
+        app:layout_constraintTop_toBottomOf="@+id/serving_entry" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="98dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
         android:text="Name:"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/enter_name"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
@@ -163,6 +170,7 @@
         android:ems="10"
         android:hint="Food Product"
         android:inputType="textPersonName"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -170,13 +178,10 @@
         android:id="@+id/calories_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="78dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="13dp"
+        android:layout_marginTop="28dp"
         android:text="Calories: "
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/calories_entry"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
@@ -184,10 +189,26 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="7dp"
         android:ems="10"
         android:inputType="numberDecimal"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/enter_name"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/calories_label"
         app:layout_constraintTop_toBottomOf="@+id/enter_name" />
+
+    <EditText
+        android:id="@+id/serving_entry"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/protein_entry"
+        app:layout_constraintStart_toEndOf="@+id/serving_label"
+        app:layout_constraintTop_toBottomOf="@+id/protein_entry" />
 
 </android.support.constraint.ConstraintLayout>
