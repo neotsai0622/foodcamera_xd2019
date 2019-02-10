@@ -10,21 +10,59 @@ import java.util.Scanner;
 public class TestParse {
 
     @Test
-    public void testAccess() {
+    public void testBar() {
         StringBuilder text = new StringBuilder();
         try {
-            Scanner in = new Scanner(new FileReader("src/test/java/com/example/a/foodcam/sample.json"));
-            while (in.hasNext()) {
-                text.append(in.next());
+            Scanner in = new Scanner(new FileReader("src/test/java/com/example/a/foodcam/bar.txt"));
+            while (in.hasNextLine()) {
+                text.append(in.nextLine());
+                text.append("\n");
             }
-            LabelParser.jsonToFood(text.toString(), 1);
+
+            Food expected = new Food("bar", 100, 3, 7, 1, 18, 35);
+            Assert.assertEquals(expected, LabelParser.jsonToFood(text.toString(), "bar"));
         } catch (FileNotFoundException e) {
             Assert.fail();
         } catch (BadImageException e) {
             Assert.fail();
-        } finally {
-            System.out.println(text.toString());
         }
-        // Assert.assertEquals("ABBEY\nROAD NW8\nCITY OF WESTMINSTER\n", text.toString());
+    }
+
+    @Test
+    public void testYerba() {
+        StringBuilder text = new StringBuilder();
+        try {
+            Scanner in = new Scanner(new FileReader("src/test/java/com/example/a/foodcam/mate.txt"));
+            while (in.hasNextLine()) {
+                text.append(in.nextLine());
+                text.append("\n");
+            }
+
+            Food expected = new Food("yerba", 100, 0, 26, 0, 26, 20);
+            Assert.assertEquals(expected, LabelParser.jsonToFood(text.toString(), "yerba"));
+        } catch (FileNotFoundException e) {
+            Assert.fail();
+        } catch (BadImageException e) {
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void testJuice() {
+        StringBuilder text = new StringBuilder();
+        try {
+            Scanner in = new Scanner(new FileReader("src/test/java/com/example/a/foodcam/juice.txt"));
+            while (in.hasNextLine()) {
+                text.append(in.nextLine());
+                text.append("\n");
+            }
+
+            Food expected = new Food("juice", 90, 0, 22, 0.2, 23, 20);
+            Assert.assertEquals(expected, LabelParser.jsonToFood(text.toString(), "juice"));
+        } catch (FileNotFoundException e) {
+            Assert.fail();
+        } catch (BadImageException e) {
+            Assert.fail();
+        }
     }
 }

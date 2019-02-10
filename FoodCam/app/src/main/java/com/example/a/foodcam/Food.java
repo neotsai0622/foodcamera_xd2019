@@ -1,32 +1,79 @@
 package com.example.a.foodcam;
 
-public class Food {
-    private String name;
-    private int calories;
-    private int fat;
-    private int sugars;
+import com.google.gson.Gson;
 
-    public Food(String name, int calories, int fat, int sugars) {
+import java.util.Objects;
+
+public class Food {
+    public final static String[] nutrients = {"calories", "calories", "fat", "lipide",
+            "sugar", "sucre", "protein", "protéine", "carbohydrate", "glucide", "sodium", "sodium"};
+    private String name;
+    private double calories;
+    private double fat;
+    private double sugars;
+    private double protein;
+    private double carbohydrate;
+    private double sodium;
+
+    public Food(String name, double calories, double fat, double sugars, double protein, double carbohydrate, double sodium) {
         this.name = name;
         this.calories = calories;
         this.fat = fat;
         this.sugars = sugars;
+        this.protein = protein;
+        this.carbohydrate = carbohydrate;
+        this.sodium = sodium;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getCalories() {
+    public double getCalories() {
         return calories;
     }
 
-    public int getFat() {
+    public double getFat() {
         return fat;
     }
 
-    public int getSugars() {
+    public double getSugars() {
         return sugars;
     }
 
+    public double getProtein() {
+        return protein;
+    }
+
+    public double getCarbohydrate() {
+        return carbohydrate;
+    }
+
+    public double getSodium() {
+        return sodium;
+    }
+
+    public String toString() {
+        return new Gson().toJson(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Food food = (Food) o;
+        return getCalories() == food.getCalories() &&
+                getFat() == food.getFat() &&
+                getSugars() == food.getSugars() &&
+                getProtein() == food.getProtein() &&
+                getCarbohydrate() == food.getCarbohydrate() &&
+                getSodium() == food.getSodium() &&
+                Objects.equals(getName(), food.getName());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getName(), getCalories(), getFat(), getSugars(), getProtein(), getCarbohydrate(), getSodium());
+    }
 }

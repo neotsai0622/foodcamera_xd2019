@@ -27,7 +27,14 @@
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" />
         <!-- To use multiple models: android:value="ocr,model2,model3" -->
-
+        <activity
+            android:name=".CallCameraActivity">
+        </activity>
     </application>
+
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
 </manifest>
