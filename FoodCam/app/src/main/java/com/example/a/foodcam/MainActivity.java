@@ -413,6 +413,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == EDITOR_REQUEST) {
             if (resultCode == RESULT_OK) {
+//                Food food = data.getParcelableExtra("Food");
+//                Toast toast = Toast.makeText(getApplicationContext(), food.getName() + " added", Toast.LENGTH_SHORT);
+//                toast.show();
 
             }
         }

@@ -49,6 +49,16 @@ public class EditorActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-
+        food.setFat(Double.parseDouble(fat.getText().toString()));
+        food.setCalories(Double.parseDouble(calories.getText().toString()));
+        food.setSodium(Double.parseDouble(sodium.getText().toString()));
+        food.setCarbohydrate(Double.parseDouble(carbohydrates.getText().toString()));
+        food.setSugars(Double.parseDouble(sugars.getText().toString()));
+        food.setProtein(Double.parseDouble(protein.getText().toString()));
+        food.setName(foodName.getText().toString());
+        Intent intent = new Intent();
+        intent.putExtra("Food", food);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

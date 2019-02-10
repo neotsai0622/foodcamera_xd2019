@@ -1,15 +1,72 @@
 package com.example.a.foodcam;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.Gson;
 
 import java.util.Objects;
 
-public class Food {
+public class Food implements Parcelable {
     public final static String[] nutrients = {"calories", "calories", "fat", "lipide",
             "sugar", "sucre", "protein", "protéine", "carbohydrate", "glucide", "sodium", "sodium"};
     private String name;
     private double calories;
     private double fat;
+    private double sugars;
+    private double protein;
+    private double carbohydrate;
+    private double sodium;
+
+    public Food(String name, double calories, double fat, double sugars, double protein, double carbohydrate, double sodium) {
+        this.name = name;
+        this.calories = calories;
+        this.fat = fat;
+        this.sugars = sugars;
+        this.protein = protein;
+        this.carbohydrate = carbohydrate;
+        this.sodium = sodium;
+    }
+
+    public Food(Parcel in) {
+        String[] data= new String[7];
+
+        in.readStringArray(data);
+        this.name = data[0];
+        this.calories = Double.parseDouble(data[1]);
+        this.fat = Double.parseDouble(data[2]);
+        this.sugars = Double.parseDouble(data[3]);
+        this.protein = Double.parseDouble(data[4]);
+        this.carbohydrate = Double.parseDouble(data[5]);
+        this.sodium = Double.parseDouble(data[6]);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringArray(new String[]{this.name, String.valueOf(this.calories), String.valueOf(this.fat),
+                String.valueOf(this.sugars), String.valueOf(this.protein), String.valueOf(this.carbohydrate),
+                String.valueOf(this.sodium)});
+    }
+
+    public static final Parcelable.Creator<Food> CREATOR = new Parcelable.Creator<Food>() {
+
+        @Override
+        public Food createFromParcel(Parcel source) {
+            return new Food(source);  //using parcelable constructor
+        }
+
+        @Override
+        public Food[] newArray(int size) {
+            return new Food[size];
+        }
+    };
+
+
 
     public void setSodium(double sodium) {
         this.sodium = sodium;
@@ -39,20 +96,7 @@ public class Food {
         this.carbohydrate = carbohydrate;
     }
 
-    private double sugars;
-    private double protein;
-    private double carbohydrate;
-    private double sodium;
 
-    public Food(String name, double calories, double fat, double sugars, double protein, double carbohydrate, double sodium) {
-        this.name = name;
-        this.calories = calories;
-        this.fat = fat;
-        this.sugars = sugars;
-        this.protein = protein;
-        this.carbohydrate = carbohydrate;
-        this.sodium = sodium;
-    }
 
     public String getName() {
         return name;
