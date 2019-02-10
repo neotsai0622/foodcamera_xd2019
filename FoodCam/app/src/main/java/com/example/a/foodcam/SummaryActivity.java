@@ -53,8 +53,7 @@ public class SummaryActivity extends AppCompatActivity {
 
         // Initialize contacts
         foods = AppDatabase.getInMemoryDatabase(getApplicationContext()).FoodModel().loadAllFood();
-        foods.add(0, new Food("Juice", 100, 0, 23, 0, 50, 0));
-
+        //foods.add(0, new Food("Juice", 100, 0, 23, 0, 50, 0));
 
         // Create adapter passing in the sample user data
         adapter = new NutritionAdapter(foods);
@@ -97,6 +96,15 @@ public class SummaryActivity extends AppCompatActivity {
         prot.setText(Prot);
 
         clearButton = findViewById(R.id.clearbutton);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppDatabase.getInMemoryDatabase(getApplicationContext()).FoodModel().deleteAll();
+                AppDatabase.destroyInstance();
+                adapter.notifyDataSetChanged();
+                finish();
+            }
+        });
     }
 
     private void addItem(Food food) {
