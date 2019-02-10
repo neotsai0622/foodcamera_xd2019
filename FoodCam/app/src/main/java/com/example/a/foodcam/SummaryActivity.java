@@ -9,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.a.foodcam.*;
@@ -20,6 +22,7 @@ import java.util.List;
 public class SummaryActivity extends AppCompatActivity {
     List<Food> foods;
     NutritionAdapter adapter;
+    Button clearButton;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -63,7 +66,44 @@ public class SummaryActivity extends AppCompatActivity {
 
         adapter.notifyDataSetChanged();
 
+        double datas[] = {0, 0, 0, 0, 0, 0};
+        for (int i = 0; i < foods.size(); i++) {
+            datas[0] += foods.get(i).getCalories();
+            datas[1] += foods.get(i).getFat();
+            datas[2] += foods.get(i).getSodium();
+            datas[3] += foods.get(i).getCarbohydrate();
+            datas[4] += foods.get(i).getSugars();
+            datas[5] += foods.get(i).getProtein();
+        }
 
+        TextView cals = findViewById(R.id.calories);
+        TextView fat = findViewById(R.id.fat);
+        TextView sod = findViewById(R.id.sodium);
+        TextView carb = findViewById(R.id.carbs);
+        TextView sug = findViewById(R.id.sugar);
+        TextView prot = findViewById(R.id.protein);
+        String Cals = "Calories" + "\n"+round(datas[0], 2);
+        String Fat = "Fat" + "\n"+round(datas[1],2 );
+        String Sod = "Sodium" + "\n"+round(datas[2], 2);
+        String Carbs = "Carbs" + "\n"+round(datas[3], 2);
+        String Sug = "Sugar" + "\n"+round(datas[4],2 );
+        String Prot = "Protein" + "\n"+round(datas[5], 2);
+
+        cals.setText(Cals);
+        fat.setText(Fat);
+        sod.setText(Sod);
+        carb.setText(Carbs);
+        sug.setText(Sug);
+        prot.setText(Prot);
+
+        clearButton = findViewById(R.id.clearbutton);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppDatabase.getInMemoryDatabase(getApplicationContext()).FoodModel().deleteAll();
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     private void addItem(Food food) {
@@ -72,5 +112,15 @@ public class SummaryActivity extends AppCompatActivity {
 
         adapter.notifyItemInserted(1);
     }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
 }
+
 //
