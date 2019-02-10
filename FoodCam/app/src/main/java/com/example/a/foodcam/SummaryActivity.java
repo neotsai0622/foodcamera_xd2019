@@ -20,6 +20,7 @@ import java.util.List;
 public class SummaryActivity extends AppCompatActivity {
     List<Food> foods;
     NutritionAdapter adapter;
+    TextView summarycal = (TextView)findViewById(R.id.textView5);
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -53,7 +54,6 @@ public class SummaryActivity extends AppCompatActivity {
         foods.add(0, new Food("Juice", 100, 0, 23, 0, 50, 0));
         foods.add(0, new Food("Juice", 100, 0, 23, 0, 50, 0));
 
-
         // Create adapter passing in the sample user data
         adapter = new NutritionAdapter(foods);
         // Attach the adapter to the recyclerview to populate items
@@ -64,6 +64,8 @@ public class SummaryActivity extends AppCompatActivity {
 
         adapter.notifyDataSetChanged();
 
+        summarycal.setText("Total Calories is: " + Double.toString(sum(foods,1)));
+
 
     }
 
@@ -72,6 +74,44 @@ public class SummaryActivity extends AppCompatActivity {
         foods.add(1, food);
 
         adapter.notifyItemInserted(1);
+    }
+
+    private double sum(List<Food> db, int category) {
+        //1 is cal
+        //2 is fat
+        //3 is sodium
+        //4 is carbo
+        //5 is sugar
+        //6 is protein
+        double sum = 0.0;
+        switch (category) {
+            case 1: for (Food f: db) {
+                        sum += f.getCalories();
+                    }
+                    break;
+            case 2: for (Food f: db) {
+                        sum += f.getFat();
+                    }
+                    break;
+            case 3: for (Food f: db) {
+                        sum += f.getSodium();
+                    }
+                    break;
+            case 4: for (Food f: db) {
+                        sum += f.getCarbohydrate();
+                    }
+                    break;
+            case 5: for (Food f: db) {
+                        sum += f.getSugars();
+                    }
+                    break;
+            case 6: for (Food f: db) {
+                        sum += f.getProtein();
+                    }
+                    break;
+            default: System.out.println("Wrong input, 0 is returned");
+        }
+        return sum;
     }
 }
 //

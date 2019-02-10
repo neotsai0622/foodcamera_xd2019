@@ -47,6 +47,8 @@ public class Food implements Parcelable {
         this.sodium = Double.parseDouble(data[6]);
     }
 
+
+
     @Override
     public int describeContents() {
         return 0;

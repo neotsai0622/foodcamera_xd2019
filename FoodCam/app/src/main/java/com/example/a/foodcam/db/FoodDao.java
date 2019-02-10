@@ -31,4 +31,5 @@ public interface FoodDao {
 
     @Query("DELETE FROM Food")
     void deleteAll();
+
 }
