@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private Bitmap mSelectedImage;
     private Button mCloudButton;
     private final int EDITOR_REQUEST = 1;
+    private final int TRIAL_REQUEST = 2;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -126,36 +127,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mImageButton = findViewById(R.id.button3);
-        mCloudButton = findViewById(R.id.button4);
         mSelectedImage = TextRecognizer.getBitmapFromAsset(this, "mate.jpg");
-
-
-
-        mImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mImageButton.setEnabled(false);
-                HashMap<String, Double> map = ImageRecognizer.runImageRecognition(mSelectedImage);
-                StringBuilder sb = new StringBuilder();
-                for (String key : map.keySet()) {
-                    sb.append(key + " " +  map.get(key).toString() + "\n");
-                }
-                Log.v("img", sb.toString());
-                mImageButton.setEnabled(true);
-            }
-        });
-
-        mCloudButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCloudButton.setEnabled(false);
-                String txt = TextRecognizer.runCloudTextRecognition(mSelectedImage);
-                Log.v("text", txt);
-                mCloudButton.setEnabled(true);
-            }
-        });
-
 
         mTextMessage = findViewById(R.id.message);
         BottomNavigationView navigation = findViewById(R.id.navigation);
@@ -239,8 +211,10 @@ public class MainActivity extends AppCompatActivity {
                     ByteBuffer buffer = image.getPlanes()[0].getBuffer();
                     byte[] bytes = new byte[buffer.capacity()];
                     buffer.get(bytes);
+                    Log.d("sumgood", "image available");
                     String result = TextRecognizer.runCloudTextRecognition(BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null));
                     Intent data = new Intent(MainActivity.this, EditorActivity.class);
+                    image.close();
                     data.putExtra("description", result);
                     startActivityForResult(data, EDITOR_REQUEST);
                 }
@@ -254,6 +228,7 @@ public class MainActivity extends AppCompatActivity {
                     super.onCaptureCompleted(session, request, result);
                     Toast.makeText(MainActivity.this, "Saved "+file, Toast.LENGTH_SHORT).show();
                     createCameraPreview();
+                    Log.d("sumgood", "capture complete");
                 }
             };
             cameraDevice.createCaptureSession(outputSurface, new CameraCaptureSession.StateCallback() {
@@ -415,6 +390,10 @@ public class MainActivity extends AppCompatActivity {
                 Food food = data.getParcelableExtra("Food");
                 Toast toast = Toast.makeText(getApplicationContext(), food.getName() + " added", Toast.LENGTH_SHORT);
                 toast.show();
+                Log.d("lookforthistag", food.toString());
+                Intent intent = new Intent(MainActivity.this, TrialActivity.class);
+                intent.putExtra("Food", food);
+                startActivityForResult(intent, TRIAL_REQUEST);
             }
         }
     }

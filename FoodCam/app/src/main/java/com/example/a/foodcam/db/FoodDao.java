@@ -9,6 +9,8 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.TypeConverters;
 import android.arch.persistence.room.Update;
 
+import com.example.a.foodcam.Food;
+
 import java.util.Date;
 import java.util.List;
 
@@ -17,16 +19,16 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
 
 @Dao
-public interface NutritionDao {
-    @Query("select * from nutrition")
-    List<Nutrition> loadAllNutrition();
+public interface FoodDao {
+    @Query("select * from Food")
+    List<Food> loadAllFood();
 
     @Insert(onConflict = IGNORE)
-    void insertNutrition(Nutrition input);
+    void insertFood(Food input);
 
     @Delete
-    void deleteNutrition(Nutrition input1, Nutrition input2);
+    void deleteFood(Food input1, Food input2);
 
-    @Query("DELETE FROM Nutrition")
+    @Query("DELETE FROM Food")
     void deleteAll();
 }

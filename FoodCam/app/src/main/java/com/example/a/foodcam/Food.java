@@ -1,15 +1,21 @@
 package com.example.a.foodcam;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 
 import java.util.Objects;
 
+@Entity
 public class Food implements Parcelable {
     public final static String[] nutrients = {"calories", "calories", "fat", "lipide",
             "sugar", "sucre", "protein", "protéine", "carbohydrate", "glucide", "sodium", "sodium"};
+    @PrimaryKey
+    @NonNull
     private String name;
     private double calories;
     private double fat;

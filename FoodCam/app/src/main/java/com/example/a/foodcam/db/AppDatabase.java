@@ -6,19 +6,23 @@ import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 
-@Database(entities = {Nutrition.class}, version = 1)
+import com.example.a.foodcam.Food;
+
+@Database(entities = {Food.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase{
 
     private static AppDatabase INSTANCE;
 
-    public abstract NutritionDao nutritionModel();
+    public abstract FoodDao FoodModel();
 
     public static AppDatabase getInMemoryDatabase(Context context) {
         if (INSTANCE == null ) {
-            INSTANCE =
-                    Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppDatabase.class)
-                    .allowMainThreadQueries()
-                    .build();
+//            INSTANCE =
+//                    Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppDatabase.class)
+//                    .allowMainThreadQueries()
+//                    .build();
+            INSTANCE = Room.databaseBuilder(context.getApplicationContext(),AppDatabase.class, "food_database").allowMainThreadQueries().build();
+
         }
         return INSTANCE;
     }
