@@ -11,12 +11,16 @@ import com.google.firebase.ml.vision.cloud.label.FirebaseVisionCloudLabel;
 import com.google.firebase.ml.vision.cloud.label.FirebaseVisionCloudLabelDetector;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class ImageRecognizer {
+    private static List<String> blacklist = new ArrayList<String>(Arrays.asList("Food", "Cuisine", "Dish", "Plate", "Hand", "Finger"));
     private static HashMap<String, Double> labelTracker = new HashMap<>();
-    public static HashMap<String, Double> runImageRecognition(Bitmap mSelectedImage) {
+    private static String result = "Failed";
+    public static String runImageRecognition(Bitmap mSelectedImage) {
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(mSelectedImage);
 
         FirebaseVisionCloudLabelDetector detector = FirebaseVision.getInstance().getVisionCloudLabelDetector();
@@ -38,18 +42,24 @@ public class ImageRecognizer {
                                 e.printStackTrace();
                             }
                         });
-        StringBuilder sb = new StringBuilder();
-        for (String key : labelTracker.keySet()) {
-            sb.append(key + " " +  labelTracker.get(key).toString() + "\n");
+        try {
+            Thread.sleep(5000);
+        } catch (Exception e) {
+
         }
-        Log.v("sumgood", sb.toString());
-        return labelTracker;
+        return result;//labelTracker;
     }
 
     public static void processCloudImageLabelRecognitionResult(List<FirebaseVisionCloudLabel> labels) {
         labelTracker = new HashMap<>();
+        double confidence = 0;
         for (FirebaseVisionCloudLabel label : labels) {
             labelTracker.put(label.getLabel(), (double) label.getConfidence());
+            if (label.getConfidence() > confidence) {
+                confidence = label.getConfidence();
+                result = label.getLabel();
+            }
+
         }
     }
 }

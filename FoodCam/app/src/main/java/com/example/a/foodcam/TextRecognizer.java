@@ -23,6 +23,7 @@ public class TextRecognizer {
     private static String textee = "Failed";
 
     public static String runCloudTextRecognition(Bitmap mSelectedImage) {
+        textee = "Failed";
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(mSelectedImage);
         FirebaseVisionTextRecognizer recognizer = FirebaseVision.getInstance()
                 .getCloudTextRecognizer();
