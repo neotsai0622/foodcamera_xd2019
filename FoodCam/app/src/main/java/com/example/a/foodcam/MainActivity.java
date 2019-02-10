@@ -55,13 +55,14 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
-    private Button mTextButton;
+    private Button mImageButton;
     private Bitmap mSelectedImage;
     private Button mCloudButton;
 
@@ -119,9 +120,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextButton = findViewById(R.id.button3);
+        mImageButton = findViewById(R.id.button3);
         mCloudButton = findViewById(R.id.button4);
-        mSelectedImage = getBitmapFromAsset(this, "paul.jpg");
+        mSelectedImage = TextRecognizer.getBitmapFromAsset(this, "mate.jpg");
 
 
 
