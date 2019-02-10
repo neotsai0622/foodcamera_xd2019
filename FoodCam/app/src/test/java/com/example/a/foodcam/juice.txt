@@ -1,0 +1,44 @@
+2019-02-09 22:05:44.249 13276-13276/com.example.a.foodcam V/CloudText: Tetra Pak 
+    IEST 
+    Nutrition Facts 
+    Valeur nutritive 
+    Per 200 mL/ par 200 mL 
+    Amount 
+    Teneur 
+    Calories / Calories 90 
+    Fat /Lipides 0 g 
+    % Daily Value 
+    % valeur quotidienne 
+    0 % 
+    0 % 
+    Saturated / saturés 0 g 
+    + Trans /trans 0 g 
+    Cholesterol / Cholestérol 0 m 
+    Sodium/Sodium 20 mg 
+    Potassium / Potassium 220 mg 
+    Carbohydrate / Glucides 23 g 
+    1 % 
+    5 % 
+    8 % 
+    0 % 
+    Fibre/Fibres 0 g 
+    Sugars/Sucres 22 g 
+    Protein / Protéines 0.2 g 
+    Vitamin A/VitamineA 
+    Vitamin C/VitamineC 
+    Calcium/Calcium 
+    Iron / Fer 
+    NATURALLY OCCURRING FRUIT SUGARS/ 
+    SUCRES NATURELS DES FRUITS 22 g/200ml 
+    Chill and shake before serving. 
+    Refroidir et agiter avant de servir. 
+    0 % 
+    80 % 
+    0 % 
+    2 % 
+    Sun-Rype Products Ltd. 
+    Kelowna, BC, Canada V1Y 2W4 
+    www.sunrype.com 
+    1-888-SUN-RYPE (786-7973) 
+
+

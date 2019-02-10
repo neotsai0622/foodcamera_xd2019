@@ -1,0 +1,27 @@
+2019-02-09 22:38:06.507 14212-14212/com.example.a.foodcam V/CloudText: n Facts 
+    Amount / Teneur 
+    % Dww0 * Amount / Teneur 
+    % DV 
+    pides 3 
+    Saturated/saturés 1 g 
+    +Trans/trans 0 g 
+    5 % Carbohydrate / Glucides 
+    Valeur nuante 
+    Per 1 bar (24 g) 
+    your 1 barre (24g) 
+    Fibre/Fires 19 
+    Sugars/Sucres 7 g 
+    Protein / Proteines1 
+    Cholesterol / Cholestérol 0 mg 
+    Calories 100 
+    Sodium / Sodium 35 mg 
+    ../* 
+    % Daily La 
+    1 % valeur quotidienne : 
+    Vit A 0 % 
+    C 0 % 
+    . 
+    Vit 
+    cum 
+
+
