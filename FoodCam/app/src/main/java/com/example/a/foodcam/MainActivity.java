@@ -386,7 +386,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), food.getName() + " added", Toast.LENGTH_SHORT);
                 toast.show();
                 Log.d("lookforthistag", food.toString());
-                Intent intent = new Intent(MainActivity.this, SummaryActivity.class);
+                Intent intent = new Intent(MainActivity.this, TrialActivity.class);
                 intent.putExtra("Food", food);
                 startActivityForResult(intent, TRIAL_REQUEST);
             }
