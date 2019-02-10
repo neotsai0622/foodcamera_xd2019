@@ -1,6 +1,7 @@
 package com.example.a.foodcam;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -63,7 +64,6 @@ import java.util.UUID;
 
 
 public class MainActivity extends AppCompatActivity {
-    private TextView mTextMessage;
     private Button mImageButton;
     private Bitmap mSelectedImage;
     private Button mCloudButton;
@@ -78,14 +78,9 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-
-                    return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                    startActivity(new Intent(MainActivity.this, SummaryActivity.class));
                     return true;
             }
             return false;
@@ -129,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
 
         mSelectedImage = TextRecognizer.getBitmapFromAsset(this, "mate.jpg");
 
-        mTextMessage = findViewById(R.id.message);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -211,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
                     ByteBuffer buffer = image.getPlanes()[0].getBuffer();
                     byte[] bytes = new byte[buffer.capacity()];
                     buffer.get(bytes);
-                    Log.d("sumgood", "image available");
+                    btnCapture.setText("Processing...");
                     String result = TextRecognizer.runCloudTextRecognition(BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null));
                     Intent data = new Intent(MainActivity.this, EditorActivity.class);
                     image.close();
@@ -385,6 +379,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        btnCapture.setText("Capture");
         if (requestCode == EDITOR_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Food food = data.getParcelableExtra("Food");
