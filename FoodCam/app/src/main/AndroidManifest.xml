@@ -28,10 +28,10 @@
             android:value="ocr" />
         <!-- To use multiple models: android:value="ocr,model2,model3" -->
         <activity
-            android:name=".trialactivity">
+            android:name=".EditorActivity">
         </activity>
         <activity
-            android:name=".EditorActivity">
+            android:name=".TrialActivity">
         </activity>
 
     </application>

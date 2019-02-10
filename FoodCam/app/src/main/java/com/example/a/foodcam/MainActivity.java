@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private Bitmap mSelectedImage;
     private Button mCloudButton;
     private final int EDITOR_REQUEST = 1;
+    private final int TRIAL_REQUEST = 2;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -415,6 +416,10 @@ public class MainActivity extends AppCompatActivity {
                 Food food = data.getParcelableExtra("Food");
                 Toast toast = Toast.makeText(getApplicationContext(), food.getName() + " added", Toast.LENGTH_SHORT);
                 toast.show();
+                Log.d("lookforthistag", food.toString());
+                Intent intent = new Intent(MainActivity.this, TrialActivity.class);
+                intent.putExtra("Food", food);
+                startActivityForResult(intent, TRIAL_REQUEST);
             }
         }
     }
