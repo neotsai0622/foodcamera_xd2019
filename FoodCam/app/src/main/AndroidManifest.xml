@@ -30,6 +30,10 @@
         <activity
             android:name=".CallCameraActivity">
         </activity>
+        <activity
+            android:name=".EditorActivity">
+        </activity>
+
     </application>
 
 

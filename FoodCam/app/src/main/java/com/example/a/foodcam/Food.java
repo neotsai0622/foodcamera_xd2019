@@ -10,6 +10,35 @@ public class Food {
     private String name;
     private double calories;
     private double fat;
+
+    public void setSodium(double sodium) {
+        this.sodium = sodium;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCalories(double calories) {
+        this.calories = calories;
+    }
+
+    public void setFat(double fat) {
+        this.fat = fat;
+    }
+
+    public void setSugars(double sugars) {
+        this.sugars = sugars;
+    }
+
+    public void setProtein(double protein) {
+        this.protein = protein;
+    }
+
+    public void setCarbohydrate(double carbohydrate) {
+        this.carbohydrate = carbohydrate;
+    }
+
     private double sugars;
     private double protein;
     private double carbohydrate;

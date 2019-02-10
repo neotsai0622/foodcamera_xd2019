@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "670298547471",
+    "firebase_url": "https://foodcam-e2140.firebaseio.com",
+    "project_id": "foodcam-e2140",
+    "storage_bucket": "foodcam-e2140.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670298547471:android:b992a54eb95c7a45",
+        "android_client_info": {
+          "package_name": "com.example.a.foodcam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670298547471-kpsgvocp12ln8utrne47ji56a7mpp0ka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWb7JUrtAkOj-sYtrT_9T4cqHzXnfyV84"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

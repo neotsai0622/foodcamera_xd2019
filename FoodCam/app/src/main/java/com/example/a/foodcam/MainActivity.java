@@ -2,6 +2,7 @@ package com.example.a.foodcam;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mImageButton;
     private Bitmap mSelectedImage;
     private Button mCloudButton;
+    private final int EDITOR_REQUEST = 1;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -229,39 +231,16 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onImageAvailable(ImageReader imageReader) {
                     Image image = null;
-                    try{
-                        image = reader.acquireLatestImage();
-                        ByteBuffer buffer = image.getPlanes()[0].getBuffer();
-                        byte[] bytes = new byte[buffer.capacity()];
-                        buffer.get(bytes);
-                        save(bytes);
+                    image = reader.acquireLatestImage();
+                    ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+                    byte[] bytes = new byte[buffer.capacity()];
+                    buffer.get(bytes);
+                    String result = TextRecognizer.runCloudTextRecognition(BitmapFactory.decodeByteArray(bytes, 0, bytes.length, null));
+                    Intent data = new Intent(MainActivity.this, EditorActivity.class);
+                    data.putExtra("description", result);
+                    startActivityForResult(data, EDITOR_REQUEST);
+                }
 
-                    }
-                    catch (FileNotFoundException e)
-                    {
-                        e.printStackTrace();
-                    }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
-                    finally {
-                        {
-                            if(image != null)
-                                image.close();
-                        }
-                    }
-                }
-                private void save(byte[] bytes) throws IOException {
-                    OutputStream outputStream = null;
-                    try{
-                        outputStream = new FileOutputStream(file);
-                        outputStream.write(bytes);
-                    }finally {
-                        if(outputStream != null)
-                            outputStream.close();
-                    }
-                }
             };
 
             reader.setOnImageAvailableListener(readerListener,mBackgroundHandler);
@@ -424,5 +403,14 @@ public class MainActivity extends AppCompatActivity {
         mBackgroundThread = new HandlerThread("Camera Background");
         mBackgroundThread.start();
         mBackgroundHandler = new Handler(mBackgroundThread.getLooper());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == EDITOR_REQUEST) {
+            if (resultCode == RESULT_OK) {
+
+            }
+        }
     }
 }
