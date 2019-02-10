@@ -127,36 +127,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mImageButton = findViewById(R.id.button3);
-        mCloudButton = findViewById(R.id.button4);
         mSelectedImage = TextRecognizer.getBitmapFromAsset(this, "mate.jpg");
-
-
-
-        mImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mImageButton.setEnabled(false);
-                HashMap<String, Double> map = ImageRecognizer.runImageRecognition(mSelectedImage);
-                StringBuilder sb = new StringBuilder();
-                for (String key : map.keySet()) {
-                    sb.append(key + " " +  map.get(key).toString() + "\n");
-                }
-                Log.v("img", sb.toString());
-                mImageButton.setEnabled(true);
-            }
-        });
-
-        mCloudButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCloudButton.setEnabled(false);
-                String txt = TextRecognizer.runCloudTextRecognition(mSelectedImage);
-                Log.v("text", txt);
-                mCloudButton.setEnabled(true);
-            }
-        });
-
 
         mTextMessage = findViewById(R.id.message);
         BottomNavigationView navigation = findViewById(R.id.navigation);
